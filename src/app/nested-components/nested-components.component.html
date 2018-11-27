@@ -1,0 +1,9 @@
+<h1> Inside Child {{parentData}} </h1>
+<button [style.color]="parentData" (click)="sendEvent()">Send Event</button>
+
+<!-- pipes -->
+<h2> {{message | uppercase }} </h2>
+<h2>{{message | lowercase }}</h2>
+<h2>{{title | titlecase}}</h2>
+
+

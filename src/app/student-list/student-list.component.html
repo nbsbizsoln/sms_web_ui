@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Roll Number</th>
+      <th>Sex</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let std of studentList" (click)="editStudent(std)">
+      <td>{{std.id}}</td>
+      <td>{{std.name}}</td>
+      <td>{{std.rollNumber}}</td>
+      <td>{{std.sex}}</td>
+      <td>{{std.schoolClass.name}}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" (click)="addNewStudent()">Add New</button>

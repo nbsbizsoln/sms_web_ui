@@ -1,0 +1,15 @@
+<h2 [style.color]="hasErrors?'red' : 'green'"> Style Binding</h2>
+<h2 [style.color]="myColor"> Style Binding</h2>
+<h2 [ngStyle]="styleClass"> Style Binding</h2>
+
+<button (click)="onClick($event)">Greet</button>
+<button (click)="greeting = 'Azeez Paloor'">Greet</button>
+{{greeting}}
+<br/>
+Message: <input type="text" #myMessage />
+<button (click)="log(myMessage)">Log</button> 
+
+<br/>
+<input type="text" [(ngModel)]="name"/>{{name}}
+
+

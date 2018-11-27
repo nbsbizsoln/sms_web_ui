@@ -1,0 +1,40 @@
+<div class="alert alert-danger" *ngIf="errorMessage">
+  {{errorMessage}}
+</div>
+<div class="col-md-6">
+  <!--{{schoolClassForm.value | json}}-->
+<form  [formGroup]="schoolClassForm" (ngSubmit)="onSubmit()">
+ <div class="form-group">
+     <label>Name: </label>
+     <input type="text" class="form-control" formControlName="className" 
+     [class.is-invalid]="className.invalid && className.touched">
+ </div>
+ <div *ngIf="className.invalid && className.touched">
+      <div class="text-danger" *ngIf="className.errors.required">Class Name required</div>
+      <div class="text-danger" *ngIf="className.errors.minlength">Class Name should be minimum 3 characters</div>
+
+ </div>
+ <div class="form-group">
+   <label>Class Teacher: </label>
+  <select  class="form-control" formControlName="classTeacherId">
+   <option value="0">Select One</option>
+   <option *ngFor="let teacher of teacherArr" value="{{teacher.id}}">{{teacher.name}}</option>
+ </select>
+ </div>
+ Subject | <button type="button" (click)="addSubject()">Add Subject</button><br/>
+ <div formArrayName="subjectList" *ngFor="let sbj  of subjectList.controls;let i= index">
+   <div [formGroupName]="i">
+      <input type="text" formControlName="name"/>
+        <select formControlName="teacherId">
+          <option value="0">Select One</option>
+          <option *ngFor="let teacher of teacherArr" value="{{teacher.id}}">{{teacher.name}}</option>
+        </select>
+      <button type="button" (click)="removeSubject(i)">Remove</button>
+   </div>
+   
+ </div>
+
+ <button type="submit">Submit</button>
+ <button type="button" (click)="goToBack()">Back</button>
+</form>
+</div>

@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Class Teacher</th>
+      <th>No of subject</th>
+      <th>No of Students</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of classList" (click)="editClass(c)">
+      <td>{{c.id}}</td>
+      <td>{{c.name}}</td>
+      <td>{{c.classTeacher.name}}</td>
+      <td>{{c.subjectList.length}}</td>
+      <td>{{c.studentsList.length}}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" (click)="addNewClass()">Add New</button>

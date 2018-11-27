@@ -1,0 +1,77 @@
+<div class="alert alert-danger" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <div class="col-md-6">
+    {{studentForm.value | json}}
+  <form  [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+   <div class="form-group">
+       <label>Name: </label>
+       <input type="text" class="form-control" formControlName="name" >
+   </div>
+
+   <div class="form-group" formGroupName="schoolClass">
+      <label>Class: </label>
+      <select formControlName="id" class="form-control">
+          <option value="0">Select One</option>
+          <option *ngFor="let c of classArr" value="{{c.id}}">{{c.name}}</option>
+        </select>
+    </div>
+
+   <div class="form-group">
+    <label>Roll Number: </label>
+    <input type="text" class="form-control" formControlName="rollNumber" >
+    </div>
+   <div class="form-group">
+    <label>Age: </label>
+    <input type="number" class="form-control" formControlName="age" >
+  </div>
+  
+  <div class="form-group">
+    <label>Sex: </label>
+    <input type="radio"  value="M" class="form-control" formControlName="sex" >Male
+    <input type="radio"  value="F" class="form-control" formControlName="sex" >Female
+  
+  </div>
+  
+  <div class="form-group">
+    <label>Address: </label>
+    <textarea class="form-control" formControlName="address" ></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label>Contact Number: </label>
+    <input type="text" class="form-control" formControlName="phoneNumber" >
+  </div>
+  
+  
+  <div class="form-group">
+    <label>Email: </label>
+    <input type="email" class="form-control" formControlName="email" >
+  </div>
+  
+  <div class="form-group">
+    <label>Date of birth: </label>
+    <input type="date" class="form-control" formControlName="dob">
+  </div>
+
+  <div class="parent1" (click)=toggleParent1Display()>
+        Show Parent1<br/>
+    </div>
+    <div>
+    <app-parent [parent1]="student.parent1" [class.d-none]="hideParent1"
+    (onParent)="onParentLoad($event,'parent1')" ></app-parent>
+  </div>
+
+  <div class="parent2" (click)=toggleParent2Display()>
+        Show Parent2<br/>
+  </div>
+  <div>
+    <app-parent [parent2]="student.parent2"  [class.d-none]="hideParent2" 
+    (onParent)="onParentLoad($event,'parent2')"></app-parent>
+  </div>
+   
+   <button type="submit">Submit</button>
+   <button type="button" (click)="goToBack()">Back</button>
+  </form>
+  </div>
+  

@@ -1,0 +1,33 @@
+<!--<h2 *ngIf="isEnabled; else elseBlock">
+  isEnabled = true
+  </h2>
+  <ng-template #elseBlock>
+    <h2>Hidden</h2>
+  </ng-template>
+-->
+
+<h2 *ngIf="isEnabled; then thenBlock; else elseBlock"></h2>
+<ng-template #thenBlock>
+  <h2>Then Block</h2>
+</ng-template>
+<ng-template #elseBlock>
+  <h2>Else Block</h2>
+</ng-template>
+<h1>Hello</h1>
+<div [ngSwitch]="color">
+  <div *ngSwitchCase="'red'">You picked Red</div>
+  <div *ngSwitchCase="'blue'">You picked Blue</div>
+  <div *ngSwitchCase="'green'">You picked Green</div>
+  <div *ngSwitchDefault>Pick Again</div>
+</div>
+
+<select  [(ngModel)]="selectedColor">
+  <option *ngFor="let color of colors" value="{{color}}">{{color}}</option>
+</select>
+
+<h2 [style.color]="selectedColor">Hiii</h2>
+<hr/>
+From child: {{message}}
+
+<hr/>
+<app-nested-components [parentData]="selectedColor" (childEvent)="message=$event"></app-nested-components>
