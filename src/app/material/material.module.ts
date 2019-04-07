@@ -6,8 +6,9 @@ import {
   MatMenuModule,
   MatToolbarModule,
    MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
-   MatProgressSpinnerModule
+   MatProgressSpinnerModule,MatSelectModule, MatRadioModule, MatExpansionModule
 } from '@angular/material';
+import { SimpleDlgBoxComponent } from '../shared/simple-dlg-box/simple-dlg-box.component';
 
 @NgModule({
   imports: [ 
@@ -15,14 +16,16 @@ import {
     MatIconModule, 
     MatMenuModule,
     MatToolbarModule,
-    MatCardModule, MatInputModule, MatTableModule,MatProgressSpinnerModule
+    MatCardModule, MatInputModule, MatTableModule,MatProgressSpinnerModule,MatSelectModule,
+    MatRadioModule,MatExpansionModule,MatTableModule
   ],
   exports: [
     MatButtonModule, 
     MatIconModule, 
     MatMenuModule,
     MatToolbarModule,
-    MatCardModule, MatInputModule, MatTableModule,MatProgressSpinnerModule
+    MatCardModule, MatInputModule, MatTableModule,MatProgressSpinnerModule,MatSelectModule,
+    MatRadioModule,MatExpansionModule,MatTableModule
   ]    
 })
 

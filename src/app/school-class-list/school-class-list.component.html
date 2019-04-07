@@ -1,21 +1,35 @@
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Class Teacher</th>
-      <th>No of subject</th>
-      <th>No of Students</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of classList" (click)="editClass(c)">
-      <td>{{c.id}}</td>
-      <td>{{c.name}}</td>
-      <td>{{c.classTeacher.name}}</td>
-      <td>{{c.subjectList.length}}</td>
-      <td>{{c.studentsList.length}}</td>
-    </tr>
-  </tbody>
+
+<table mat-table [dataSource]="classList">
+  <div> 
+      <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id.</th>
+          <td mat-cell *matCellDef="let element" (click)="editClass(element)">{{element.id}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="classTeacher">
+          <th mat-header-cell *matHeaderCellDef>Class Teacher</th>
+          <td mat-cell *matCellDef="let element">{{element.classTeacher.name}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="noofstd">
+            <th mat-header-cell *matHeaderCellDef>No of Students</th>
+            <td mat-cell *matCellDef="let element">{{element.studentsList.length}}</td>
+          </ng-container>
+    
+    
+          <ng-container matColumnDef="noofsbj">
+              <th mat-header-cell *matHeaderCellDef>No of Subject</th>
+              <td mat-cell *matCellDef="let element">{{element.subjectList.length}}</td>
+            </ng-container>
+  </div>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
 </table>
-<button type="button" (click)="addNewClass()">Add New</button>
+<br/>
+<button type="button" mat-raised-button color="primary" (click)="addNewClass()">Add</button>

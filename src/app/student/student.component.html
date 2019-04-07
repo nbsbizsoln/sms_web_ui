@@ -1,77 +1,95 @@
 <div class="alert alert-danger" *ngIf="errorMessage">
     {{errorMessage}}
   </div>
-  <div class="col-md-6">
-    {{studentForm.value | json}}
-  <form  [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-   <div class="form-group">
-       <label>Name: </label>
-       <input type="text" class="form-control" formControlName="name" >
-   </div>
+  
+  <!--  {{studentForm.value | json}}-->
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Student Management</mat-card-title>
+      <mat-card-subtitle>Add or Edit Student</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form  [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+            <mat-form-field class="example-quarter-width">
+                <input type="text" matInput placeholder="Name" formControlName="name" >
+            </mat-form-field>
+         
+            <mat-form-field class="example-quarter-width">
+                <div formGroupName="schoolClass">
+                  
+                    <mat-select placeholder="Class" formControlName="id" >
+                        <mat-option value="0">Select One</mat-option>
+                        <mat-option *ngFor="let c of classArr" value="{{c.id}}">{{c.name}}</mat-option>
+                      </mat-select>
+                  </div>
+            </mat-form-field>
+           
+         
+            <mat-form-field class="example-quarter-width">
+             <input type="text" matInput placeholder="Roll Number" formControlName="rollNumber" >
+            </mat-form-field>
+            <mat-form-field class="example-quarter-width">
+             <input type="number" matInput placeholder="Age" formControlName="age" >
+            </mat-form-field>
+           
+           Sex: <mat-radio-group placeholder='Sex' formControlName="sex" class="example-full-width">
+             <mat-radio-button  value="M" >Male</mat-radio-button>
+             <mat-radio-button  value="F" >Female</mat-radio-button>
+           
+           </mat-radio-group><br/>
+           
+           <mat-form-field class="example-full-width">
+             <textarea matInput placeholder="Address" formControlName="address"></textarea>
+           </mat-form-field><br/>
+           
+           <mat-form-field class="example-quarter-width">
+             <input type="text" matInput placeholder="Contact Number" formControlName="phoneNumber" >
+           </mat-form-field>
+           
+           
+           <mat-form-field class="example-quarter-width">
+             <input type="email" matInput placeholder="Email" formControlName="email" >
+           </mat-form-field>
+           
+           <mat-form-field class="example-quarter-width">
+             <input type="date" matInput placeholder="Date of birth" formControlName="dob">
+            </mat-form-field>
+         
+            <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Parent1 Details
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    Add or Edit Parent1
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
 
-   <div class="form-group" formGroupName="schoolClass">
-      <label>Class: </label>
-      <select formControlName="id" class="form-control">
-          <option value="0">Select One</option>
-          <option *ngFor="let c of classArr" value="{{c.id}}">{{c.name}}</option>
-        </select>
-    </div>
+                  
+                  
+                  <app-parent [parent1]="student.parent1" 
+                  (onParent)="onParentLoad($event,'parent1')" ></app-parent>
+                
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                          Parent2 Details
+                      </mat-panel-title>
+                      <mat-panel-description>
+                      Add or Edit Parent2
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                      <app-parent [parent2]="student.parent2" 
+                    (onParent)="onParentLoad($event,'parent2')"></app-parent>
+                  </mat-expansion-panel>
+                </mat-accordion>
+                <br/><br/>
+            <button type="submit" mat-raised-button color="primary">Submit</button>&nbsp;
+            <button type="button" (click)="goToBack()" mat-raised-button>Back</button>
+           </form>
+    </mat-card-content>
+  </mat-card>
 
-   <div class="form-group">
-    <label>Roll Number: </label>
-    <input type="text" class="form-control" formControlName="rollNumber" >
-    </div>
-   <div class="form-group">
-    <label>Age: </label>
-    <input type="number" class="form-control" formControlName="age" >
-  </div>
-  
-  <div class="form-group">
-    <label>Sex: </label>
-    <input type="radio"  value="M" class="form-control" formControlName="sex" >Male
-    <input type="radio"  value="F" class="form-control" formControlName="sex" >Female
-  
-  </div>
-  
-  <div class="form-group">
-    <label>Address: </label>
-    <textarea class="form-control" formControlName="address" ></textarea>
-  </div>
-  
-  <div class="form-group">
-    <label>Contact Number: </label>
-    <input type="text" class="form-control" formControlName="phoneNumber" >
-  </div>
-  
-  
-  <div class="form-group">
-    <label>Email: </label>
-    <input type="email" class="form-control" formControlName="email" >
-  </div>
-  
-  <div class="form-group">
-    <label>Date of birth: </label>
-    <input type="date" class="form-control" formControlName="dob">
-  </div>
-
-  <div class="parent1" (click)=toggleParent1Display()>
-        Show Parent1<br/>
-    </div>
-    <div>
-    <app-parent [parent1]="student.parent1" [class.d-none]="hideParent1"
-    (onParent)="onParentLoad($event,'parent1')" ></app-parent>
-  </div>
-
-  <div class="parent2" (click)=toggleParent2Display()>
-        Show Parent2<br/>
-  </div>
-  <div>
-    <app-parent [parent2]="student.parent2"  [class.d-none]="hideParent2" 
-    (onParent)="onParentLoad($event,'parent2')"></app-parent>
-  </div>
-   
-   <button type="submit">Submit</button>
-   <button type="button" (click)="goToBack()">Back</button>
-  </form>
-  </div>
   

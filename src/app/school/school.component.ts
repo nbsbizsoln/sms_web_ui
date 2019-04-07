@@ -4,6 +4,8 @@ import { SchoolService } from './school.service';
 import { IDistrict } from '../shared/idistrict';
 import { School } from './ischool';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { SimpleDlgBoxComponent } from '../shared/simple-dlg-box/simple-dlg-box.component';
 
 @Component({
   selector: 'app-school',
@@ -17,23 +19,24 @@ export class SchoolComponent implements OnInit {
   school:School;
   errorMessage:string;
   stateHasError = false;
-  constructor(private _schoolService:SchoolService, private router:Router,private route:ActivatedRoute) { }
+  constructor(private _schoolService:SchoolService, private router:Router,private route:ActivatedRoute
+    ,private dlg:MatDialog) { }
 
   ngOnInit() {
      this._schoolService.getStates().subscribe(data=>{
         this.stateArr = data;
-        console.log(this.stateArr);
+        //console.log(this.stateArr);
         
       });
       
       this._schoolService.getSchoolByUsername(localStorage.getItem('username')).subscribe(data=>{
         this.school = data;
         localStorage.setItem("schoolId",""+this.school.id);
-        console.log(this.school);
+        //console.log(this.school);
         this._schoolService.getDistrictListByState(this.school.state).subscribe(data=>{
           //this.school = data;
           this.districtArr = data;
-          console.log(this.districtArr);
+          //console.log(this.districtArr);
           
         });
 
@@ -66,8 +69,12 @@ export class SchoolComponent implements OnInit {
   {
     this._schoolService.updateSchool(school).subscribe(data=>{
 
-        console.log(data);
-        this.router.navigate(['../'],{relativeTo:this.route});
+        //console.log(data);
+        //this.router.navigate(['../'],{relativeTo:this.route});
+        const dialogRef = this.dlg.open(SimpleDlgBoxComponent, {
+          width: '250px',
+          data: {name: "School saved successfully!"}
+        });
     },err=>this.errorMessage = err.statusText);
   }
 

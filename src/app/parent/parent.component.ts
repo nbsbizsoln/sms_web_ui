@@ -11,9 +11,9 @@ export class ParentComponent implements OnInit {
 
   constructor(private fb:FormBuilder) { }
 
-  private parentForm;
+   parentForm;
 
-  private _parent1:Parent;
+   _parent1:Parent;
 
   @Output() private onParent = new EventEmitter();
 

@@ -14,6 +14,8 @@ export class StudentListComponent implements OnInit {
 
   studentList:Student[];
   errorMessage:string;
+
+   displayedColumns= ["id","name","age","sex","rollNumber","contactNumber","schoolClass"];
   ngOnInit() {
     let schoolId = +localStorage.getItem('schoolId');
     this.stdService.getStudentsBySchoolId(schoolId).subscribe(

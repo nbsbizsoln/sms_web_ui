@@ -1,50 +1,49 @@
-<div class="alert alert-danger" *ngIf="errorMessage">
+<!--<div class="alert alert-danger" *ngIf="errorMessage">
     {{errorMessage}}
   </div>
-  <div class="col-md-6"  [style.background]="'gray'">
+  -->
     <!--{{parentForm.value | json}}-->
-<form  [formGroup]="parentForm" (ngSubmit)="onSubmit()">
-<div class="form-group">
-  <label>Name: </label>
-  <input type="text" class="form-control" formControlName="name" >
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Parent Management</mat-card-title>
+    <mat-card-subtitle>Add or Edit parent</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <form  [formGroup]="parentForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="example-half-width">
+            <input type="text" matInput placeholder="Name" formControlName="name" >
+          </mat-form-field>
+          
+          <mat-form-field class="example-half-width">
+          <input type="number" matInput placeholder="Age" formControlName="age" >
+          </mat-form-field>
+          
+          Sex: <mat-radio-group formControlName="sex" class="example-full-width">
+            <mat-radio-button  value="M">Male</mat-radio-button>
+            <mat-radio-button  value="F">Female</mat-radio-button>
+          </mat-radio-group>
+          
+          <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Address" formControlName="address" ></textarea>
+          </mat-form-field>
+          
+          <mat-form-field class="example-quarter-width">
+          <input type="text" matInput placeholder="Contact Number" formControlName="phoneNumber1" >
+          </mat-form-field>
+          
+          <mat-form-field class="example-quarter-width">
+            <input type="text" matInput placeholder="Alternative Contact Number" formControlName="phoneNumber2" >
+          </mat-form-field>
+          
+          <mat-form-field class="example-quarter-width">
+          <input type="email" matInput placeholder="Email" formControlName="email" >
+          </mat-form-field>
+          
+          <mat-form-field class="example-quarter-width">
+          <input type="date" matInput placeholder="Date of birth" formControlName="dob">
+          </mat-form-field> <br/>
+          <button type="submit" mat-raised-button color="primary">Save</button>
+          </form>
+  </mat-card-content>
 
-<div class="form-group">
-<label>Age: </label>
-<input type="number" class="form-control" formControlName="age" >
-</div>
-
-<div class="form-group">
-<label>Sex: </label>
-<input type="radio"  value="M" class="form-control" formControlName="sex" >Male
-<input type="radio"  value="F" class="form-control" formControlName="sex" >Female
-
-</div>
-
-<div class="form-group">
-<label>Address: </label>
-<textarea class="form-control" formControlName="address" ></textarea>
-</div>
-
-<div class="form-group">
-<label>Contact Number: </label>
-<input type="text" class="form-control" formControlName="phoneNumber1" >
-</div>
-
-<div class="form-group">
-  <label>Alternative Number: </label>
-  <input type="text" class="form-control" formControlName="phoneNumber2" >
-  </div>
-
-<div class="form-group">
-<label>Email: </label>
-<input type="email" class="form-control" formControlName="email" >
-</div>
-
-<div class="form-group">
-<label>Date of birth: </label>
-<input type="date" class="form-control" formControlName="dob">
-</div>
-<button type="submit">Save</button>
-</form>
-</div>
+</mat-card>

@@ -10,8 +10,6 @@ import { TeacherComponent } from './teacher/teacher.component';
 import { StudentComponent } from './student/student.component';
 import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { BindingsComponent } from './bindings/bindings.component';
-import { DirectivesDemoComponent } from './directives-demo/directives-demo.component';
 import { NestedComponentsComponent } from './nested-components/nested-components.component';
 import { SchoolClassListComponent } from './school-class-list/school-class-list.component';
 import { SubjectComponent } from './subject/subject.component';
@@ -26,6 +24,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MaterialModule } from './material/material.module';
+import { SimpleDlgBoxComponent } from './shared/simple-dlg-box/simple-dlg-box.component';
+import { MatDialog, MatDialogModule } from '@angular/material';
 
 
 
@@ -37,15 +37,14 @@ import { MaterialModule } from './material/material.module';
     SchoolClassComponent,
     TeacherComponent,
     StudentComponent,
-    BindingsComponent,
-    DirectivesDemoComponent,
     NestedComponentsComponent,
     SchoolClassListComponent,
     SubjectComponent,
     TeacherListComponent,
     StudentListComponent,
     ParentComponent,
-    LoginComponent
+    LoginComponent,
+    SimpleDlgBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -57,13 +56,15 @@ import { MaterialModule } from './material/material.module';
     MatCheckboxModule,
     MatInputModule,
     MatButtonModule,
-    MaterialModule
+    MaterialModule,
+    MatDialogModule
   ],
   providers: [LoginGuard,{
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[SimpleDlgBoxComponent]
 })
 export class AppModule { }

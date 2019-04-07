@@ -1,47 +1,47 @@
 <div class="alert alert-danger" *ngIf="errorMessage">
   {{errorMessage}}
 </div>
-<div class="col-md-6">
-  {{teacherForm.value | json}}
-<form  [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
- <div class="form-group">
-     <label>Name: </label>
-     <input type="text" class="form-control" formControlName="name" >
- </div>
- <div class="form-group">
-  <label>Age: </label>
-  <input type="number" class="form-control" formControlName="age" >
-</div>
 
-<div class="form-group">
-  <label>Sex: </label>
-  <input type="radio"  value="M" class="form-control" formControlName="sex" >Male
-  <input type="radio"  value="F" class="form-control" formControlName="sex" >Female
+<!--  {{teacherForm.value | json}}-->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Teachers Management</mat-card-title>
+    <mat-card-subtitle>Add or Edit Teacher</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+      <form  [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="example-quarter-width">
+              <input matInput placeholder="Name" formControlName="name" >
+          </mat-form-field>
+          <mat-form-field class="example-quarter-width">
+           <input type="number" matInput formControlName="age" >
+          </mat-form-field> 
+        
+         
+         Sex: <mat-radio-group formControlName="sex" placeholder="Sex">
+           <mat-radio-button  value="M"  >Male</mat-radio-button>
+           <mat-radio-button value="F" >Female</mat-radio-button>
+         
+         </mat-radio-group>
+         <mat-form-field class="example-full-width">
+           <textarea placeholder="Address" matInput formControlName="address" ></textarea>
+          </mat-form-field>
+          <mat-form-field class="example-quarter-width">
+           <input matInput placeholder="Contact Number" formControlName="contactNumber" >
+          </mat-form-field>
+         
+         <mat-form-field class="example-quarter-width">
+           <input type="email" placeholder="Email" matInput formControlName="email" >
+          </mat-form-field>
+         
+         <mat-form-field class="example-quarter-width">
+           <input type="date" matInput placeholder="Date of birth" formControlName="dob">
+         </mat-form-field>
+          <br/>
+          <button mat-raised-button color="primary" type="submit">Submit</button> &nbsp;
+          <button type="button" mat-raised-button (click)="goToBack()">Back</button>
+         </form>
+  </mat-card-content>
+</mat-card>
 
-</div>
 
-<div class="form-group">
-  <label>Address: </label>
-  <textarea class="form-control" formControlName="address" ></textarea>
-</div>
-
-<div class="form-group">
-  <label>Contact Number: </label>
-  <input type="text" class="form-control" formControlName="contactNumber" >
-</div>
-
-
-<div class="form-group">
-  <label>Email: </label>
-  <input type="email" class="form-control" formControlName="email" >
-</div>
-
-<div class="form-group">
-  <label>Date of birth: </label>
-  <input type="date" class="form-control" formControlName="dob">
-</div>
- 
- <button type="submit">Submit</button>
- <button type="button" (click)="goToBack()">Back</button>
-</form>
-</div>

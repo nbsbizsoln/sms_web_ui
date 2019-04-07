@@ -10,14 +10,14 @@ import { TeacherService } from './teacher.service';
   styleUrls: ['./teacher.component.css']
 })
 export class TeacherComponent implements OnInit {
-  private errorMessage: any;
+   errorMessage: any;
 
   constructor(private fb:FormBuilder,private route:ActivatedRoute,private router:Router,
     private ts:TeacherService) { }
 
-  private teacherForm;
-  private teacherId:number;
-  private teacher:Teacher;
+   teacherForm;
+   teacherId:number;
+   teacher:Teacher;
 
   get school()
   {

@@ -1,40 +1,68 @@
 <div class="alert alert-danger" *ngIf="errorMessage">
   {{errorMessage}}
 </div>
-<div class="col-md-6">
   <!--{{schoolClassForm.value | json}}-->
-<form  [formGroup]="schoolClassForm" (ngSubmit)="onSubmit()">
- <div class="form-group">
-     <label>Name: </label>
-     <input type="text" class="form-control" formControlName="className" 
-     [class.is-invalid]="className.invalid && className.touched">
- </div>
- <div *ngIf="className.invalid && className.touched">
-      <div class="text-danger" *ngIf="className.errors.required">Class Name required</div>
-      <div class="text-danger" *ngIf="className.errors.minlength">Class Name should be minimum 3 characters</div>
 
- </div>
- <div class="form-group">
-   <label>Class Teacher: </label>
-  <select  class="form-control" formControlName="classTeacherId">
-   <option value="0">Select One</option>
-   <option *ngFor="let teacher of teacherArr" value="{{teacher.id}}">{{teacher.name}}</option>
- </select>
- </div>
- Subject | <button type="button" (click)="addSubject()">Add Subject</button><br/>
- <div formArrayName="subjectList" *ngFor="let sbj  of subjectList.controls;let i= index">
-   <div [formGroupName]="i">
-      <input type="text" formControlName="name"/>
-        <select formControlName="teacherId">
-          <option value="0">Select One</option>
-          <option *ngFor="let teacher of teacherArr" value="{{teacher.id}}">{{teacher.name}}</option>
-        </select>
-      <button type="button" (click)="removeSubject(i)">Remove</button>
-   </div>
-   
- </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Class Management</mat-card-title>
+      <mat-card-subtitle>Add New or Edit class</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form  [formGroup]="schoolClassForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-half-width">
+          <input matInput formControlName="className"  placeholder="Classs Name"
+          [class.is-invalid]="className.invalid && className.touched">
+          <div *ngIf="className.invalid && className.touched">
+            <div class="text-danger" *ngIf="className.errors.required">Class Name required</div>
+            <div class="text-danger" *ngIf="className.errors.minlength">Class Name should be minimum 3 characters</div>
+      
+       </div>
+      </mat-form-field>
+            
+        
+        
+        <mat-form-field class="example-half-width">
+        
+         <mat-select  placeholder="Class Teacher" formControlName="classTeacherId" class="example-half-width">
+          <mat-option value="0">Select One</mat-option>
+          <mat-option *ngFor="let teacher of teacherArr" value="{{teacher.id}}">{{teacher.name}}</mat-option>
+        </mat-select>
+       </mat-form-field>
 
- <button type="submit">Submit</button>
- <button type="button" (click)="goToBack()">Back</button>
-</form>
-</div>
+       <mat-card class="example-card">
+         <mat-card-header>
+           <mat-card-title>Subject</mat-card-title>
+           <mat-card-subtitle>Add or Edit Subject</mat-card-subtitle>
+         </mat-card-header>
+         <mat-card-content>
+
+          <button type="button" mat-raised-button color="primary" (click)="addSubject(null)">Add Subject</button><br/><br/>
+          <div formArrayName="subjectList" *ngFor="let sbj  of subjectList.controls;let i= index">
+            <div [formGroupName]="i">
+               <mat-form-field class="onebythird-width">
+                  <input matInput placeholder="Subject Name" formControlName="name"/>
+               </mat-form-field>
+               <mat-form-field class="onebythird-width">
+                  <mat-select formControlName="teacherId" placeholder="Subject Teacher">
+                      <mat-option value="0">Select One</mat-option>
+                      <mat-option *ngFor="let teacher of teacherArr" value="{{teacher.id}}">{{teacher.name}}</mat-option>
+                    </mat-select>
+               </mat-form-field>
+                 
+               <button type="button" mat-raised-button (click)="removeSubject(i)">Remove</button>
+            </div>
+            
+          </div>
+
+         </mat-card-content>
+       </mat-card>
+       
+       <br/>
+        <button mat-raised-button color="primary" type="submit">Submit</button> &nbsp;
+        <button mat-raised-button type="button" (click)="goToBack()">Back</button>
+       </form>
+    </mat-card-content>
+  </mat-card>
+
+

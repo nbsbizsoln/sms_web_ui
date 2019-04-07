@@ -17,13 +17,11 @@ export class StudentComponent implements OnInit {
   constructor(private stdService:StudentService, private router:Router, 
     private route:ActivatedRoute,private fb:FormBuilder,private scService:SchoolClassService) { }
 
-  private studentForm;
-  private stdId:number;
-  private errorMessage:string;
-  private student:Student=new Student(0,"","",0,"",null,"","","",true,null,null,null,null);
-  private hideParent1=true;
-  private hideParent2 = true;
-  private classArr:SchoolClass[];
+   studentForm;
+   stdId:number;
+   errorMessage:string;
+   student:Student=new Student(0,"","",0,"",null,"","","",true,null,null,null,null);
+   classArr:SchoolClass[];
 
   ngOnInit() {
 
@@ -111,42 +109,16 @@ export class StudentComponent implements OnInit {
     });
   }
 
-
-  toggleParent2Display()
-  {
-    if(this.hideParent2 === false)
-    {
-      this.hideParent2 = true;
-    }
-    else{
-      this.hideParent2 = false;
-    }
-  }
-
-
-  toggleParent1Display()
-  {
-    if(this.hideParent1 === false)
-    {
-      this.hideParent1 = true;
-    }
-    else{
-      this.hideParent1 = false;
-    }
-  }
-
   onParentLoad(value:Parent,componentName)
   {
     if(componentName === "parent2")
     {
-      this.hideParent2 = true;
       this.studentForm.patchValue({
         parent2:value
     });
     }
     else if(componentName === "parent1")
     {
-      this.hideParent1 = true;
       this.studentForm.patchValue({
           parent1:value
       });

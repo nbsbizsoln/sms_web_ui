@@ -4,8 +4,7 @@ import { SchoolComponent } from './school/school.component';
 import {SchoolClassComponent} from './school-class/school-class.component';
 import {TeacherComponent} from './teacher/teacher.component';
 import { StudentComponent } from './student/student.component';
-import { BindingsComponent } from './bindings/bindings.component';
-import { DirectivesDemoComponent } from './directives-demo/directives-demo.component';
+
 import { SchoolClassListComponent } from './school-class-list/school-class-list.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { StudentListComponent } from './student-list/student-list.component';

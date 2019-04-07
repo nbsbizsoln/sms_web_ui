@@ -12,8 +12,10 @@ export class TeacherListComponent implements OnInit {
 
   constructor(private teacherService:TeacherService, private router:Router,private route:ActivatedRoute) { }
 
-  private teacherList:Teacher[];
-  private errorMessage;
+   teacherList:Teacher[];
+   errorMessage;
+
+   displayedColumns= ["id","name","age","sex","contactNumber"];
   ngOnInit() {
 
     let schoolId = +localStorage.getItem("schoolId");

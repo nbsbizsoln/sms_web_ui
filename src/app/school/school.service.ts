@@ -6,15 +6,18 @@ import { IDistrict } from '../shared/idistrict';
 import { School } from './ischool';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
+const apiEndpoint = environment.APIEndPoint;
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolService {
 
-  private stateUrl:string="http://localhost:8080/api/states";
-  private districtByStateNameUrl:string = "http://localhost:8080/api/districts/findByStateName";
-  private schoolBaseUrl="http://localhost:8080/api/schools";
+   
+  private stateUrl:string=apiEndpoint+"/api/states";
+  private districtByStateNameUrl:string = apiEndpoint+"/api/districts/findByStateName";
+  private schoolBaseUrl=apiEndpoint+"/api/schools";
  
   constructor(private _http:HttpClient) { }
 

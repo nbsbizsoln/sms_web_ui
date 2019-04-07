@@ -1,21 +1,36 @@
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Sex</th>
-      <th>Contact Number</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let t of teacherList" (click)="editTeacher(t)">
-      <td>{{t.id}}</td>
-      <td>{{t.name}}</td>
-      <td>{{t.age}}</td>
-      <td>{{t.sex}}</td>
-      <td>{{t.contactNumber}}</td>
-    </tr>
-  </tbody>
-</table>
-<button type="button" (click)="addNewTeacher()">Add New</button>
+
+<table mat-table [dataSource]="teacherList">
+    <div> 
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id.</th>
+            <td mat-cell *matCellDef="let element" (click)="editTeacher(element)">{{element.id}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef>Age</th>
+            <td mat-cell *matCellDef="let element">{{element.age}}</td>
+          </ng-container>
+      
+          <ng-container matColumnDef="sex">
+              <th mat-header-cell *matHeaderCellDef>Sex</th>
+              <td mat-cell *matCellDef="let element">{{element.sex}}</td>
+            </ng-container>
+      
+      
+            <ng-container matColumnDef="contactNumber">
+                <th mat-header-cell *matHeaderCellDef>Contact Number</th>
+                <td mat-cell *matCellDef="let element">{{element.contactNumber}}</td>
+              </ng-container>
+    </div>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns:displayedColumns;"></tr>
+  </table>
+  <br/>
+  <button type="button" mat-raised-button color="primary" (click)="addNewTeacher()">Add</button>
+  

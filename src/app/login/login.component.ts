@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
     private route:ActivatedRoute) { }
 
 
-  private loginForm:FormGroup;
-  private errorMessage;
+   loginForm:FormGroup;
+   errorMessage;
   ngOnInit() {
 
     this.loginForm = this.fb.group({

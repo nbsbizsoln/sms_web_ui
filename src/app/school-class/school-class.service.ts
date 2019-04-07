@@ -3,14 +3,16 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import {throwError, Observable} from 'rxjs';
 import { SchoolClass } from './school-class';
+import {environment} from '../../environments/environment';
 
+const apiEndpoint = environment.APIEndPoint;
 @Injectable({
   providedIn: 'root'
 })
 export class SchoolClassService {
 
   constructor(private http:HttpClient) { }
-  private classBaseUrl = "http://localhost:8080/api/classes";
+  private classBaseUrl = apiEndpoint+"/api/classes";
   getClassesBySchoolId(shoolId:number):Observable<SchoolClass[]>{
     return this.http.get<SchoolClass[]>(this.classBaseUrl+"/findBySchool/"+shoolId)
     .pipe(catchError(this.errorHandler));

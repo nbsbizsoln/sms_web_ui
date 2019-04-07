@@ -14,17 +14,17 @@ import { VirtualTimeScheduler } from 'rxjs';
 })
 export class SchoolClassComponent implements OnInit {
 
-  private schoolClass:SchoolClass;
-  private teacherArr:Teacher[];
-  private errorMessage:string[];
-  private classId:number;
+   schoolClass:SchoolClass;
+  teacherArr:Teacher[];
+  errorMessage:string[];
+   classId:number;
 
   constructor(private teacherService:TeacherService, private classService:SchoolClassService,
     private route:ActivatedRoute, private router:Router,private fb:FormBuilder) { }
 
   
 
-  private schoolClassForm;
+   schoolClassForm;
 
   get className()
   {
@@ -58,7 +58,7 @@ createSubject(sbj):FormGroup{
   return this.fb.group({
       id:[sbj.id],
       name:[sbj.name],
-      teacherId:[sbj.teacher.id]
+      teacherId:[""+sbj.teacher.id]
   });
 }
 
@@ -101,7 +101,7 @@ createSubject(sbj):FormGroup{
   {
       this.schoolClassForm.patchValue({
           className: this.schoolClass.name,
-          classTeacherId:this.schoolClass.classTeacher.id ,
+          classTeacherId:""+this.schoolClass.classTeacher.id ,
           classId:this.schoolClass.id
       });
       this.loadSubjects(this.schoolClass.subjectList);

@@ -1,3 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 /*@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";*/
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .example-quarter-width {
+    width: 25%;
+  }
+  .example-half-width {
+    width: 50%;
+  }
+  .onebythird-width{
+      width: 33.33%;
+  }
+  table{
+    width: 100%;
+  }
